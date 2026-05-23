@@ -464,6 +464,7 @@
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
+<img id="modal-image" src="" alt="Gambar Jurusan" style="width:100%; max-width:300px; margin-bottom:15px;">
             <h2 id="modal-title" class="modal-title"></h2>
             <p id="modal-desc"></p>
             <ul id="modal-list" class="modal-list"></ul>
@@ -560,6 +561,7 @@
         const jurusanData = {
             tkj: {
                 nama: "Teknik Komputer dan Jaringan (TKJ)",
+		gambar: "images/tkj.jpg",
                 deskripsi: "Jurusan TKJ membekali siswa dengan kompetensi di bidang perakitan komputer, instalasi jaringan, administrasi server, dan troubleshooting.",
                 kompetensi: [
                     "Perakitan dan Perawatan Komputer",
@@ -571,6 +573,7 @@
             },
             akt: {
                 nama: "Akuntansi dan Keuangan Lembaga (AKT)",
+		gambar: "images/akt.jpg",
                 deskripsi: "Jurusan AKT mempersiapkan siswa menjadi tenaga ahli di bidang akuntansi, perpajakan, dan pengelolaan keuangan perusahaan.",
                 kompetensi: [
                     "Pencatatan Transaksi Keuangan",
@@ -582,6 +585,7 @@
             },
             titl: {
                 nama: "Teknik Instalasi Tenaga Listrik (TITL)",
+		gambar: "images/titl1.jpg",
                 deskripsi: "Jurusan TITL menghasilkan teknisi listrik yang kompeten dalam instalasi, perawatan, dan perbaikan sistem kelistrikan rumah tangga dan industri.",
                 kompetensi: [
                     "Instalasi Listrik Rumah Tangga dan Gedung",
@@ -593,6 +597,7 @@
             },
             bkp: {
                 nama: "Bisnis Konstruksi dan Properti (BKP)",
+		gambar: "images/bkp.jpg",
                 deskripsi: "Jurusan BKP membekali siswa dengan pengetahuan dan keterampilan di bidang konstruksi bangunan, manajemen proyek, dan bisnis properti.",
                 kompetensi: [
                     "Gambar Teknik Bangunan",
@@ -609,7 +614,21 @@
             if (data) {
                 document.getElementById('modal-title').innerText = data.nama;
                 document.getElementById('modal-desc').innerHTML = `<strong>Deskripsi:</strong> ${data.deskripsi}<br><br><strong>Kompetensi yang Dipelajari:</strong>`;
-                
+                 // Tambahkan gambar sesuai jurusan
+        const gambarJurusan = {
+            tkj: "images/tkj.jpg",
+            akt: "images/akt.jpg",
+            titl: "images/titl1.jpg",
+            bkp: "images/bkp.jpg"
+        };
+        document.getElementById('modal-image').src = gambarJurusan[jurusanKey];
+        
+        const listHtml = data.kompetensi.map(item => `<li><i class="fas fa-check-circle"></i> ${item}</li>`).join('');
+        document.getElementById('modal-list').innerHTML = listHtml;
+        
+        document.getElementById('modal').style.display = 'block';
+    }
+}
                 const listHtml = data.kompetensi.map(item => `<li><i class="fas fa-check-circle"></i> ${item}</li>`).join('');
                 document.getElementById('modal-list').innerHTML = listHtml;
                 
